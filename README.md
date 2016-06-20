@@ -1,2 +1,1 @@
-# dumbdumbdumb
-Simple code snippets written by me that don't deserve their own repository neither being a gist
+# 100 Days of Code
