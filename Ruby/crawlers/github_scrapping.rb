@@ -38,3 +38,19 @@ more_info.each do |t|
   print t.css("strong.vcard-stat-count").text +
         " " + t.css("span.text-muted").text + "\n"
 end
+
+# NOT WORKING IN A GENERAL WAY
+
+# repositories info
+# repo_info = page.css("div.overview-tab > div")
+# puts("-----------------------------------------------------------------")
+# puts repo_info.css("div.single-column h3").text.strip
+# box = repo_info.css("div.single-column ul li")
+#
+# box.each do |b|
+#   puts b.css("a")[0]["href"]
+#   puts b.css("span.repo-info span")[1].text.strip.delete("\n")
+#   puts b.css("span.repo-info span")[2].text.strip.delete("\n")
+#   puts
+# end
+# puts("-----------------------------------------------------------------")
