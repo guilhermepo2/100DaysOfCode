@@ -21,9 +21,11 @@ page = Nokogiri::HTML(open(page_to_scrap, :allow_redirections => :safe))
 info = page.css("div.one-fourth")
 
 # Getting da names
-names = info.css("h1.vcard-names")
-puts "Name: " + names.css("div.vcard-fullname").text
-puts "username: " + names.css("div.vcard-username").text
+names = info.css("h1.vcard-names div")
+names.each do |n|
+  print n.attribute("itemprop").text + ": " +
+        n.text + "\n"
+end
 
 # Some infos about location, email, link and data
 infos = info.css("li.vcard-detail")
