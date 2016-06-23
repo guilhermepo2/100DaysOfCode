@@ -17,7 +17,7 @@ Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 page_to_scrap = "#{GITHUB_BASE_LINK}/#{GITHUB_USER}"
 page = Nokogiri::HTML(open(page_to_scrap, :allow_redirections => :safe))
 
-# Getting info on github
+# Getting profile info on github
 info = page.css("div.one-fourth")
 
 # Getting da names
