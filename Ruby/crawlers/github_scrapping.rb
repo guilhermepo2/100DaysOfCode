@@ -54,3 +54,22 @@ box.each do |b|
   puts
 end
 puts("-----------------------------------------------------------------")
+
+# Contributions last year
+puts("-----------------------------------------------------------------")
+puts repo_info[1].css("h3").text
+puts("-----------------------------------------------------------------")
+
+# Contribution activity
+puts("-----------------------------------------------------------------")
+puts repo_info[2].css("h2").text
+puts repo_info[2].css("h3").text.strip.delete("\n")
+contrib_list = repo_info[2].css("ul li")
+
+contrib_list.each do |cl|
+  puts "#{GITHUB_BASE_LINK}"+cl.css("a").attribute("href")
+  puts cl.text.strip
+  puts
+end
+puts("-----------------------------------------------------------------")
+
