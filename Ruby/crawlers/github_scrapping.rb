@@ -5,7 +5,7 @@ require 'open_uri_redirections'
 
 # BASE LINK and github user
 GITHUB_BASE_LINK = "http://github.com"
-GITHUB_REPOSITORES = "?tab=repositories"
+GITHUB_REPOSITORIES = "?tab=repositories"
 GITHUB_ACTIVITY = "?tab=activity"
 GITHUB_USER = "guilhermepo2"
 
@@ -72,4 +72,29 @@ contrib_list.each do |cl|
   puts
 end
 puts("-----------------------------------------------------------------")
+
+
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# ------------------ GETTING ALL REPOSITORIES INFORMATION ---------------
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+
+repos_page_link = "#{GITHUB_BASE_LINK}/#{GITHUB_USER}#{GITHUB_REPOSITORIES}"
+repos_page = Nokogiri::HTML(open(repos_page_link, :allow_redirections => :safe))
+repos = repos_page.css("ul.repo-list > div")
+
+repos.each do |r|
+  puts 
+  puts "Repository: " + r.css("h3").text.strip.delete("\n")
+  puts "Description: " + r.css("p.repo-list-description").text.strip.delete("\n")
+  puts "Update: " + r.css("p.repo-list-meta").text.strip.delete("\n")
+  puts 
+  m_info = r.css("div.repo-list-stats")
+  puts "Programming Language: " + m_info.css("span").text.strip.delete("\n") unless m_info.css("span").text.strip.delete("\n").empty?
+  puts "Stars: " + m_info.css("a")[0].text.strip.delete("\n")
+  puts "Forks: " + m_info.css("a")[1].text.strip.delete("\n")
+  puts
+  puts("-----------------------------------------------------------------")
+end
 
