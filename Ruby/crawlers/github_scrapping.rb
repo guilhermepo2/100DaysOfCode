@@ -6,12 +6,12 @@ require 'open_uri_redirections'
 # BASE LINK and github user
 GITHUB_BASE_LINK = "http://github.com"
 GITHUB_REPOSITORIES = "?tab=repositories"
-GITHUB_ACTIVITY = "?tab=activity"
 GITHUB_USER = "guilhermepo2"
 
 # Where to save the github information from the user
-DATA_DIR = "github-scrapping/"
-Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
+# Not Currently in use
+# DATA_DIR = "github-scrapping/"
+# Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 
 # Start Scrapping
 page_to_scrap = "#{GITHUB_BASE_LINK}/#{GITHUB_USER}"
@@ -39,9 +39,7 @@ more_info.each do |t|
         " " + t.css("span.text-muted").text + "\n"
 end
 
-# NOT WORKING IN A GENERAL WAY
-
-# repositories info
+# repositories on the main page info
 repo_info = page.css("div.overview-tab > div")
 puts("-----------------------------------------------------------------")
 puts repo_info.css("div.single-column h3").text.strip
