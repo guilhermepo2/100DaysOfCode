@@ -16,3 +16,5 @@
 *.dwlt
 
 Simon/Library/
+Simon/obj/
+Simon/ProjectSettings/
