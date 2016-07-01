@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour {
 		return inputLock;
 	}
 
+	public int getSequenceSize()
+	{
+		return simonSequence.Count;
+	}
+
 	public void unlockInput()
 	{
 		inputLock = false;
@@ -44,6 +49,11 @@ public class GameManager : MonoBehaviour {
 
 	public void addIntoPlayerSequence(int id)
 	{
+		if (playerSequence.Count < simonSequence.Count) {
+			if (simonSequence [playerSequence.Count] != id)
+				gameOver = true;
+		}
+			
 		playerSequence.Add (id);
 	}
 
