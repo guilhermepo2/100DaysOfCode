@@ -19,8 +19,6 @@ public class UserInterface : MonoBehaviour {
 			instance = this;
 		else if(instance != this)
 			Destroy (gameObject);
-
-		DontDestroyOnLoad (gameObject);
 	}
 
 	void Update()

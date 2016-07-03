@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour {
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
-
-		DontDestroyOnLoad(gameObject);
 	}
 
 	private void insertRandomIntoSequence()
@@ -87,7 +85,9 @@ public class GameManager : MonoBehaviour {
 				} else
 					gameOver = true;
 			}
-		} else
-			Debug.Log ("You Lose!");
+		} else {
+			PlayerPrefs.SetInt ("score", simonSequence.Count);
+			Application.LoadLevel ("gameOver");
+		}
 	}
 }
