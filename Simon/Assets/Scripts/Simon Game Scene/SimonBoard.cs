@@ -9,6 +9,11 @@ public class SimonBoard : MonoBehaviour {
 	public GameObject blueButton;
 	public GameObject yellowButton;
 	public GameObject greenButton;
+	[Header("Audio Clips")]
+	public AudioClip redSound;
+	public AudioClip blueSound;
+	public AudioClip yellowSound;
+	public AudioClip greenSound;
 	[Header("Controls")]
 	public float waitTime = 0.5f;
 	[Header("Colors")]
@@ -55,21 +60,25 @@ public class SimonBoard : MonoBehaviour {
 		{
 		case 0:
 			redButton.GetComponent<SpriteRenderer> ().color = redPressed;
+			SoundManager.getInstance ().PlaySingle (redSound);
 			yield return new WaitForSeconds (waitTime);
 			redButton.GetComponent<SpriteRenderer> ().color = red;
 			break;
 		case 1:
 			blueButton.GetComponent<SpriteRenderer> ().color = bluePressed;
+			SoundManager.getInstance ().PlaySingle (blueSound);
 			yield return new WaitForSeconds (waitTime);
 			blueButton.GetComponent<SpriteRenderer> ().color = blue;
 			break;
 		case 2:
 			yellowButton.GetComponent<SpriteRenderer> ().color = yellowPressed;
+			SoundManager.getInstance ().PlaySingle (yellowSound);
 			yield return new WaitForSeconds (waitTime);
 			yellowButton.GetComponent<SpriteRenderer> ().color = yellow;
 			break;
 		case 3:
 			greenButton.GetComponent<SpriteRenderer> ().color = greenPressed;
+			SoundManager.getInstance ().PlaySingle (greenSound);
 			yield return new WaitForSeconds (waitTime);
 			greenButton.GetComponent<SpriteRenderer> ().color = green;
 			break;
@@ -85,21 +94,25 @@ public class SimonBoard : MonoBehaviour {
 			{
 			case 0:
 				redButton.GetComponent<SpriteRenderer> ().color = redPressed;
+				SoundManager.getInstance ().PlaySingle (redSound);
 				yield return new WaitForSeconds (waitTime);
 				redButton.GetComponent<SpriteRenderer> ().color = red;
 				break;
 			case 1:
 				blueButton.GetComponent<SpriteRenderer> ().color = bluePressed;
+				SoundManager.getInstance ().PlaySingle (blueSound);
 				yield return new WaitForSeconds (waitTime);
 				blueButton.GetComponent<SpriteRenderer> ().color = blue;
 				break;
 			case 2:
 				yellowButton.GetComponent<SpriteRenderer> ().color = yellowPressed;
+				SoundManager.getInstance ().PlaySingle (yellowSound);
 				yield return new WaitForSeconds (waitTime);
 				yellowButton.GetComponent<SpriteRenderer> ().color = yellow;
 				break;
 			case 3:
 				greenButton.GetComponent<SpriteRenderer> ().color = greenPressed;
+				SoundManager.getInstance ().PlaySingle (greenSound);
 				yield return new WaitForSeconds (waitTime);
 				greenButton.GetComponent<SpriteRenderer> ().color = green;
 				break;
