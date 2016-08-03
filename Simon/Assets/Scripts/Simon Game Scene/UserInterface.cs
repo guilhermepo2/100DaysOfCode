@@ -23,6 +23,6 @@ public class UserInterface : MonoBehaviour {
 
 	void Update()
 	{
-		sequenceSizeText.text = "Sequence Size: " + GameManager.getInstance ().getSequenceSize ();
+		sequenceSizeText.text = "" + (GameManager.getInstance ().getSequenceSize ()-1);
 	}
 }

@@ -11,7 +11,6 @@ public class ButtonChangeColor : MonoBehaviour {
 		{
 			GameManager.getInstance ().addIntoPlayerSequence (id);
 			StartCoroutine(SimonBoard.getInstance ().playButton (id));
-
 		}
 	}
 
