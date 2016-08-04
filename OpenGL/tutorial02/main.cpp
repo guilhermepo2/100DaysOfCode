@@ -10,6 +10,7 @@ g++ main.cpp -o main -I/usr/local/include -I/opt/X11/lib -L/usr/local/lib -lglfw
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include "../common/loadShader.hpp"
 
 int main()
 {
@@ -64,7 +65,6 @@ int main()
   // Creating the VAO (Vertex Array Object)
   GLuint VertexArrayID;
   glGenVertexArrays(1, &VertexArrayID);
-  printf("oi\n");
   glBindVertexArray(VertexArrayID);
 
   // We need three 3D points in order to make a triangle, so...
@@ -86,9 +86,16 @@ int main()
   glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data,
 	       GL_STATIC_DRAW);
 
+  // Create and Compile our GLSL program from the shader
+  GLuint programID = LoadShaders("SimpleVertexShader.vertexshader",
+				 "SimpleFragmentShader.fragmentshader");
+
 
   do {
-    glClear( GL_COLOR_BUFFER_BIT );
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+    // use our shader
+    glUseProgram(programID);
 
     // Now we can draw our triangle :)
     glEnableVertexAttribArray(0);
