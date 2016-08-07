@@ -23,6 +23,11 @@ public class UserInterface : MonoBehaviour {
 
 	void Update()
 	{
-		sequenceSizeText.text = "" + (GameManager.getInstance ().getSequenceSize ()-1);
+		if(!GameManager.getInstance().isGameOver()) sequenceSizeText.text = "" + (GameManager.getInstance ().getSequenceSize ()-1);
+	}
+
+	public void TurnGameOffPlease()
+	{
+		sequenceSizeText.text = "OFF";
 	}
 }

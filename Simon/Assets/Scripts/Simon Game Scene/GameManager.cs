@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour {
 		inputLock = false;
 	}
 
+	public bool isGameOver()
+	{
+		return gameOver;
+	}
+
+	public void StartGame()
+	{
+		gameOver = false;
+	}
+
 	void Awake()
 	{
 		if (instance == null)
@@ -67,6 +77,11 @@ public class GameManager : MonoBehaviour {
 
 		return true;
 	}
+
+	void Start()
+	{
+		gameOver = true;
+	}
 		
 	void Update () 
 	{
@@ -87,7 +102,11 @@ public class GameManager : MonoBehaviour {
 			}
 		} else {
 			PlayerPrefs.SetInt ("score", simonSequence.Count);
-			Application.LoadLevel ("gameOver");
+			UserInterface.getInstance ().TurnGameOffPlease ();
+			simonSequence.Clear ();
+			playerSequence.Clear ();
+			canPlaySimonSequence = true;
+			GameObject.Find ("Simon Background").GetComponent<BoxCollider2D> ().enabled = true;
 		}
 	}
 }
