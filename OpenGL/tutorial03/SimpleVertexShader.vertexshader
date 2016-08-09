@@ -1,0 +1,15 @@
+// VERTEX SHADER
+# version 330 core
+
+layout (location = 0) in vec3 vertexPosition_modelspace;
+
+// vec3 -> vector of 3 components
+// layout (location = 0) -> reffers to the buffer used to feed the vertexPosition_modelspace attribute
+// vertexPosition_modelspace -> will contain the position of the vertex for each run of the vertex shader
+// in -> input
+
+void main() {
+     // main function will merely set the vertex’ position to whatever was in the buffer.
+     gl_Position.xyz = vertexPosition_modelspace;
+     gl_Position.w = 1.0;
+}
