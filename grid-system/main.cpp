@@ -14,7 +14,7 @@
 #include <glm/glm.hpp>
 
 void draw_tiles();
-FileHandler map("maps/background_sample03.tmap");
+FileHandler map("maps/background_sample04.tmap");
 
 int main()
 {
