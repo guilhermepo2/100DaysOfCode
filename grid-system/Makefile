@@ -1,5 +1,5 @@
 CC = g++
-SOURCE = main.cpp
+SOURCE = main.cpp fileHandler/fileHandler.cpp
 OUTPUT = grid
 GL_INCLUDE = -I/usr/local/include -I/opt/X11/lib
 GL_LIBRARY = -L/usr/local/lib

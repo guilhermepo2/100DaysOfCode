@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "fileHandler/fileHandler.hpp"
 
 #define HORIZONTAL_TILES 10
 #define VERTICAL_TILES 10
-
 
 // Including GLEW - Always do it before gl.h and glfw.h
 #include <GL/glew.h>
@@ -13,10 +13,12 @@
 // Including OpenGL Mathematics
 #include <glm/glm.hpp>
 
-void draw_square_on_tiles();
+void draw_tiles();
+FileHandler map("maps/background_sample03.tmap");
 
 int main()
 {
+  
   if( !glfwInit() )
     {
       fprintf(stderr, "Failed to initialize GLFW.\n");
@@ -25,7 +27,7 @@ int main()
 
   // Open a window and create the OpenGL context
   GLFWwindow * window;
-  window = glfwCreateWindow(1024, 768, "Ebin grid System", NULL, NULL);
+  window = glfwCreateWindow(1024, 768, "LE EBIN GRID SYSTEM", NULL, NULL);
   if(window == NULL)
     {
       fprintf(stderr, "Error creating window :(\n");
@@ -51,7 +53,7 @@ int main()
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     // Draw Something here!
-    draw_square_on_tiles();
+    draw_tiles();
     
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -63,36 +65,48 @@ int main()
   return 0;
 }
 
-void draw_square_on_tiles()
+
+void draw_tiles()
 {
-  float horizontal_pass = (1.0f / HORIZONTAL_TILES);
-  float vertical_pass = (1.0f / VERTICAL_TILES);
+  float pass = (2.0f / map.getDimension());
+  float halfPass = pass/2.0f;
+
+  #if DEBUG
+  std::cout << "Pass: " << pass << std::endl;
+  std::cout << "Half Pass: " << halfPass << std::endl;
+  #endif
   
-  for(float i = -1.0f; i < 1.0f; i += vertical_pass)
+  float y = (1.0f - halfPass);
+  for(int i = 0; i < map.getDimension(); i++)
     {
-      for(float j = -1.0f; j < 1.0f; j += horizontal_pass)
+      float x = (-1.0f + halfPass);
+      for(int j = 0; j < map.getDimension(); j++)
 	{
-	  glColor3f(1.0f, 1.0f, 1.0f);
+	  switch(map.getMatrixPosition(i,j))
+	    {
+	    case 'B':
+	      glColor3f(0.0f, 0.0f, 1.0f);
+	      break;
+	    case 'R':
+	      glColor3f(1.0f, 0.0f, 0.0f);
+	      break;
+	    case 'G':
+	      glColor3f(0.0f, 1.0f, 0.0f);
+	      break;
+	    case 'X':
+	      glColor3f(0.5f, 0.5f, 0.5f);
+	      break;
+	    }
+
 	  glBegin(GL_QUADS);
-	  glVertex3f(j, i, 0.0f);
-	  glVertex3f(j+horizontal_pass, i, 0.0f);
-	  glVertex3f((j+horizontal_pass),
-	  	     i+vertical_pass, 0.0f);
-	  glVertex3f(j, i+vertical_pass, 0.0f);
+	  glVertex3f(x-halfPass,y-halfPass,0.0f);
+	  glVertex3f(x-halfPass,y+halfPass,0.0f);
+	  glVertex3f(x+halfPass,y+halfPass,0.0f);
+	  glVertex3f(x+halfPass,y-halfPass,0.0f);
 	  glEnd();
 
-	  j += horizontal_pass;
-	  
-	  glColor3f(1.0f, 0.0f, 0.0f);
-	  glBegin(GL_QUADS);
-	  glVertex3f(j, i, 0.0f);
-	  glVertex3f((j+horizontal_pass), i, 0.0f);
-	  glVertex3f((j+horizontal_pass),
-	  	     i+vertical_pass, 0.0f);
-	  glVertex3f(j, i+vertical_pass, 0.0f);
-	  glEnd();
-	  
-	  glEnd();
+	  x += pass;
 	}
+      y -= pass;
     }
 }
