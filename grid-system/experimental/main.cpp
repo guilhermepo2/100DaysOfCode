@@ -14,6 +14,7 @@
 #include <glm/glm.hpp>
 
 void draw_tiles();
+void draw_square();
 FileHandler map("maps/background_sample04.tmap");
 
 int main()
@@ -28,6 +29,7 @@ int main()
   // Open a window and create the OpenGL context
   GLFWwindow * window;
   window = glfwCreateWindow(1024, 768, "LE EBIN GRID SYSTEM", NULL, NULL);
+  
   if(window == NULL)
     {
       fprintf(stderr, "Error creating window :(\n");
@@ -39,6 +41,7 @@ int main()
   glfwMakeContextCurrent(window);
 
   // Initializing GLEW
+  glewExperimental = true;
   if( glewInit() != GLEW_OK)
     {
       fprintf(stderr, "Failed to initialize GLEW\n");
@@ -64,7 +67,6 @@ int main()
   glfwTerminate();
   return 0;
 }
-
 
 void draw_tiles()
 {
