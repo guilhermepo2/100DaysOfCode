@@ -63,10 +63,18 @@ int main()
 
   // We need three 3D points in order to make a triangle, so...
   // An array of 3 vectors which represents 3 vertices
+  float x = 0.0f;
+  float y = 0.0f;
+  float z = 0.0f;
+  float l = 0.25f;
   static const GLfloat g_vertex_buffer_data[] = {
-    -1.0f, -1.0f, 0.0f,
-    1.0f, -1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
+    x-l, y+l, z,
+    x+l, y+l, z,
+    x-l, y-l, z,
+
+    x+l, y+l, z,
+    x-l, y-l, z,
+    x+l, y-l, z,
   };
 
   // now we have to give our triangle to OpenGL, so...
@@ -103,7 +111,7 @@ int main()
 			  (void*)0    // array buffer offset
 			  );
     // Drawing!
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     glDisableVertexAttribArray(0);
     
     glfwSwapBuffers(window);
