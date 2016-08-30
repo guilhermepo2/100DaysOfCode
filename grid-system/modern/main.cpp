@@ -68,13 +68,13 @@ int main()
   float z = 0.0f;
   float l = 0.25f;
   static const GLfloat g_vertex_buffer_data[] = {
-    x-l, y+l, z,
-    x+l, y+l, z,
-    x-l, y-l, z,
-
-    x+l, y+l, z,
-    x-l, y-l, z,
-    x+l, y-l, z,
+    x-l, y+l, z, // P1
+    x+l, y+l, z, // P2
+    x-l, y-l, z, // P3
+    
+    x+l, y+l, z, // P2
+    x-l, y-l, z, // P3
+    x+l, y-l, z, // P4
   };
 
   // now we have to give our triangle to OpenGL, so...
