@@ -24,6 +24,9 @@ namespace sparky
       void update() const;
       void clear() const;
 
+      inline int getWidth() const { return this->width; }
+      inline int getHeight() const { return this->height; }
+
     private:
       void init();
     };
