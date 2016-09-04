@@ -3,7 +3,10 @@
 #ifndef WINDOW_HEADER
 #define WINDOW_HEADER
 
+// keep in mind that GLEW should be included before GLFW3
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include <iostream>
 
 namespace sparky

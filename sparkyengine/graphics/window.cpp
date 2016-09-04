@@ -29,11 +29,14 @@ namespace sparky
 	  exit(0);
 	}
 
+      // antialising
+      // glEnable(GL_MULTISAMPLE); // it does not work
+      glfwWindowHint(GLFW_SAMPLES, 16); // 16x antialising
+      
       // USING THE CORRECT OPENGL
       // minimum version: OpenGL 3.3
       // The Forward Compatibility makes MAC OS X use 4.1
       // all good
-      
       //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
       //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
       //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -52,6 +55,13 @@ namespace sparky
 
       glfwMakeContextCurrent(this->window);
       glfwSetWindowSizeCallback(this->window, windowResize);
+
+      glewExperimental = GL_TRUE;
+      if (glewInit() != GLEW_OK)
+	{
+	  std::cout << "Error initializing GLEW" << std::endl;
+	  exit(0);
+	}
     }
 
     void Window::clear() const
