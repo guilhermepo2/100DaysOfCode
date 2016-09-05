@@ -54,6 +54,44 @@ public class SimonBoard : MonoBehaviour {
 		greenButton.GetComponent<SpriteRenderer> ().color = green;
 	}
 
+
+	public IEnumerator playEverythingBecauseYouLost()
+	{
+		GameManager.getInstance ().lockInput ();
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		blueButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yellowButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		greenButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = red;
+		blueButton.GetComponent<SpriteRenderer> ().color = blue;
+		yellowButton.GetComponent<SpriteRenderer> ().color = yellow;
+		greenButton.GetComponent<SpriteRenderer> ().color = green;
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		blueButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yellowButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		greenButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = red;
+		blueButton.GetComponent<SpriteRenderer> ().color = blue;
+		yellowButton.GetComponent<SpriteRenderer> ().color = yellow;
+		greenButton.GetComponent<SpriteRenderer> ().color = green;
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		blueButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yellowButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		greenButton.GetComponent<SpriteRenderer> ().color = redPressed;
+		yield return new WaitForSeconds (2*waitTime);
+		redButton.GetComponent<SpriteRenderer> ().color = red;
+		blueButton.GetComponent<SpriteRenderer> ().color = blue;
+		yellowButton.GetComponent<SpriteRenderer> ().color = yellow;
+		greenButton.GetComponent<SpriteRenderer> ().color = green;
+		yield return new WaitForSeconds (2*waitTime);
+		GameManager.getInstance ().unlockInput ();
+	}
+
 	public IEnumerator playButton(int id)
 	{
 		switch(id)

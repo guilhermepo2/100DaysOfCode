@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour {
 		inputLock = false;
 	}
 
+	public void lockInput()
+	{
+		inputLock = true;
+	}
+
 	public bool isGameOver()
 	{
 		return gameOver;
@@ -58,8 +63,11 @@ public class GameManager : MonoBehaviour {
 	public void addIntoPlayerSequence(int id)
 	{
 		if (playerSequence.Count < simonSequence.Count) {
-			if (simonSequence [playerSequence.Count] != id)
+			if (simonSequence [playerSequence.Count] != id) {
+				Debug.Log ("YOU LOST");
 				gameOver = true;
+				StartCoroutine (SimonBoard.getInstance ().playEverythingBecauseYouLost ());
+			}
 		}
 			
 		playerSequence.Add (id);
@@ -97,10 +105,10 @@ public class GameManager : MonoBehaviour {
 				if (ListEqual (playerSequence, simonSequence)) {
 					canPlaySimonSequence = true;
 					playerSequence.Clear ();
-				} else
-					gameOver = true;
+				}
 			}
 		} else {
+			Debug.Log ("I'm here");
 			PlayerPrefs.SetInt ("score", simonSequence.Count);
 			UserInterface.getInstance ().TurnGameOffPlease ();
 			simonSequence.Clear ();
