@@ -16,11 +16,12 @@ int main()
     {
       window.clear();
 
-      #if 0
-      glBegin(GL_TRIANGLES);
-      glVertex2f(-0.5f, -0.5f);
-      glVertex2f(0.0f, 0.5f);
-      glVertex2f(0.5f, -0.5f);
+      #if 1
+      glBegin(GL_QUADS);
+      glVertex2f(-0.5,-0.5);
+      glVertex2f(-0.5,0.5);
+      glVertex2f(0.5,0.5);
+      glVertex2f(0.5,-0.5);
       glEnd();
       #endif
       

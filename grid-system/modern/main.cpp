@@ -8,6 +8,7 @@ g++ main.cpp -o main -I/usr/local/include -I/opt/X11/lib -L/usr/local/lib -lglfw
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include "common/loadShader.hpp"
+#include <iostream>
 
 int main()
 { 
@@ -67,16 +68,17 @@ int main()
   float y = 0.0f;
   float z = 0.0f;
   float l = 0.25f;
+  
   static const GLfloat g_vertex_buffer_data[] = {
-    x-l, y+l, z, // P1
-    x+l, y+l, z, // P2
-    x-l, y-l, z, // P3
+    x-l, y+l, // P1
+    x+l, y+l, // P2
+    x-l, y-l, // P3
     
-    x+l, y+l, z, // P2
-    x-l, y-l, z, // P3
-    x+l, y-l, z, // P4
-  };
-
+    x+l, y+l, // P2
+    x-l, y-l, // P3
+    x+l, y-l, // P4
+    };
+  
   // now we have to give our triangle to OpenGL, so...
   // This will identify the vertex buffer
   GLuint vertexbuffer;
@@ -104,7 +106,7 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
     glVertexAttribPointer(
 			  0,          //
-			  3,          // size
+			  2,          // size
 			  GL_FLOAT,   // type
 			  GL_FALSE,   // normalized?
 			  0,          // stride

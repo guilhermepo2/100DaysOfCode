@@ -37,6 +37,7 @@ int main()
       return -1;
     }
 
+
   // Making the Context
   glfwMakeContextCurrent(window);
 
