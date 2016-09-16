@@ -15,7 +15,7 @@
 
 void draw_tiles();
 void draw_square();
-FileHandler map("maps/background_sample04.tmap");
+FileHandler map("maps/astar.tmap");
 
 int main()
 {
@@ -87,17 +87,23 @@ void draw_tiles()
 	{
 	  switch(map.getMatrixPosition(i,j))
 	    {
-	    case 'B':
-	      glColor3f(0.0f, 0.0f, 1.0f);
-	      break;
-	    case 'R':
-	      glColor3f(1.0f, 0.0f, 0.0f);
-	      break;
 	    case 'G':
-	      glColor3f(0.0f, 1.0f, 0.0f);
+	      glColor3ub(143, 209, 101);
 	      break;
-	    case 'X':
-	      glColor3f(0.5f, 0.5f, 0.5f);
+	    case 'S':
+	      glColor3ub(199, 190, 155);
+	      break;
+	    case 'F':
+	      glColor3ub(1, 176, 94);
+	      break;
+	    case 'M':
+	      glColor3ub(149, 137, 91);
+	      break;
+	    case 'W':
+	      glColor3ub(79, 143, 208);
+	      break;
+	    default:
+	      glColor3ub(0, 0, 0);
 	      break;
 	    }
 
