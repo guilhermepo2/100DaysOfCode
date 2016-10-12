@@ -25,17 +25,35 @@ void hello(int a)
     }
 }
 
+void foo(int a)
+{
+  std::cout << "foo + " << a << std::endl; 
+}
+
 int main()
 {
-  std::thread * threads = new std::thread[THREAD_COUNT];
-  for(int i = 0; i < THREAD_COUNT; i++)
+  while(true)
     {
-      threads[i] = std::thread(&hello, i);
-    }
+      std::thread * threads = new std::thread[THREAD_COUNT];
+      for(int i = 0; i < THREAD_COUNT; i++)
+	{
+	  threads[i] = std::thread(&hello, i);
+	}
+      
+      for(int i = 0; i < THREAD_COUNT; i++)
+	{
+	  threads[i].join();
+	}
 
-  for(int i = 0; i < THREAD_COUNT; i++)
-    {
-      threads[i].join();
+      for(int i = 0; i < THREAD_COUNT; i++)
+	{
+	  threads[i] = std::thread(&foo, i);
+	}
+
+      for(int i = 0; i < THREAD_COUNT; i++)
+	{
+	  threads[i].join();
+	}
     }
   return 0;
 }
