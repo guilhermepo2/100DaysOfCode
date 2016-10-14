@@ -7,6 +7,7 @@ public class UserInterface : MonoBehaviour {
 	public static UserInterface instance = null;
 
 	public Text sequenceSizeText;
+	public Text clickToPlay;
 
 	public static UserInterface getInstance()
 	{
@@ -23,11 +24,15 @@ public class UserInterface : MonoBehaviour {
 
 	void Update()
 	{
-		if(!GameManager.getInstance().isGameOver()) sequenceSizeText.text = "" + (GameManager.getInstance ().getSequenceSize ()-1);
+		if (!GameManager.getInstance ().isGameOver ()) {
+			sequenceSizeText.text = "" + (GameManager.getInstance ().getSequenceSize () - 1);
+			clickToPlay.text = "";
+		}
 	}
 
 	public void TurnGameOffPlease()
 	{
 		sequenceSizeText.text = "OFF";
+		clickToPlay.text = "CLICK ON THE MIDDLE TO PLAY";
 	}
 }
