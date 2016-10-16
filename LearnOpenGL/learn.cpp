@@ -3,7 +3,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <math.h>
+#include "common/shader.hpp"
 
+/*
 // our shaders
 const GLchar* vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 position;\n"
@@ -19,6 +21,7 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
     "{\n"
     "color = ourColor;\n"
     "}\n\0";
+*/
 
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
@@ -85,6 +88,7 @@ int main()
     1, 2, 3              // second triangle
   };
 
+  /*
   //vertex shader
   GLuint vertexShader;
   vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -135,6 +139,10 @@ int main()
   // after creating the shader program, we dont need the individual shaders anymore
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
+  */
+
+  // creating shader via file
+  Shader ourShader("shaders/shader.vs", "shaders/shader.fs");
 
 
   
@@ -178,14 +186,15 @@ int main()
       // update the uniform color
       GLfloat timeValue = glfwGetTime();
       GLfloat greenValue = (sin(timeValue) / 2) + 0.5;
-      GLint vertexColorLocation = glGetUniformLocation(shaderProgram,"ourColor");
+      GLint vertexColorLocation = glGetUniformLocation(ourShader.program,"ourColor");
       
 
       // render everything here
       // ...
       glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT);
-      glUseProgram(shaderProgram);
+      //glUseProgram(shaderProgram);
+      ourShader.Use();
       glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
       glBindVertexArray(VAO);
       //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
