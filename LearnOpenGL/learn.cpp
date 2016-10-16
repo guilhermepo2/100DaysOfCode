@@ -6,15 +6,19 @@
 // our shaders
 const GLchar* vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 position;\n"
+    "out vec4 vertexColor;"
     "void main()\n"
     "{\n"
     "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+    "vertexColor = vec4(0.5f, 0.0f, 0.0f, 1.0f);"
     "}\0";
+
 const GLchar* fragmentShaderSource = "#version 330 core\n"
+    "in vec4 vertexColor;"
     "out vec4 color;\n"
     "void main()\n"
     "{\n"
-    "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "color = vertexColor;\n"
     "}\n\0";
 
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mode)
@@ -32,8 +36,7 @@ int main()
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
   glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
   glfwWindowHint(GLFW_SAMPLES, 16);     // antialising
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // make mac os x happy
-  
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // make mac os x happy  
   // creating the window
   GLFWwindow * window = glfwCreateWindow(800, 600, "Learn OpenGL", nullptr, nullptr);
   if(window == nullptr)
